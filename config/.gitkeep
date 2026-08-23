@@ -1,0 +1,3 @@
+# App-wide configuration (later tasks): api.ts (API base URL/client, task 45.2),
+# query-client.ts (React Query defaults, task 45.2), theme.ts (theme/branding
+# helpers, task 45.5).

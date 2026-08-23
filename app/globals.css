@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * ---------------------------------------------------------------------------
+ * Carlos ERP — Design Tokens
+ * ---------------------------------------------------------------------------
+ * Tokens are declared as CSS custom properties so that:
+ *   1. TailwindCSS maps them to utilities via `var(--token)` (tailwind.config.ts).
+ *   2. Tenant branding (task 45.5, Requirement 11.2/11.5) can override the
+ *      BRAND + SEMANTIC color tokens at runtime by re-declaring them on `:root`
+ *      (or on a `[data-tenant]` scope) after login — no rebuild required.
+ *
+ * Token defaults mirror the platform design-system palette documented in
+ * design.md (Design Tokens). Only the `--color-brand-*` and `--color-*`
+ * semantic tokens are expected to be tenant-overridable; spacing/radius/type
+ * tokens are platform-wide and stay fixed.
+ * ---------------------------------------------------------------------------
+ */
+:root {
+  /* Brand colors — TENANT-OVERRIDABLE */
+  --color-brand-primary: #1e40af;
+  --color-brand-secondary: #0891b2;
+  --color-brand-accent: #f59e0b;
+
+  /* Neutral scale */
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+
+  /* Semantic colors — TENANT-OVERRIDABLE */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Surface / foreground aliases */
+  --color-background: var(--color-neutral-50);
+  --color-foreground: var(--color-neutral-900);
+
+  /* Spacing scale */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, monospace;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-neutral-900);
+    --color-foreground: var(--color-neutral-50);
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
