@@ -22,13 +22,16 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { createQueryClient } from '@config/query-client';
 import { AuthProvider } from '@features/auth';
+import { I18nProvider } from '@features/i18n';
 
 export function Providers({ children }: { children: React.ReactNode }): React.JSX.Element {
   const [queryClient] = useState(() => createQueryClient());
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>{children}</AuthProvider>
+      <I18nProvider>
+        <AuthProvider>{children}</AuthProvider>
+      </I18nProvider>
       {process.env.NODE_ENV !== 'production' ? <ReactQueryDevtools initialIsOpen={false} /> : null}
     </QueryClientProvider>
   );

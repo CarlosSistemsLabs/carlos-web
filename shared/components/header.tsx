@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { LOGIN_ROUTE } from '@config/api';
 import { useAuth } from '@features/auth';
 import { useBranding } from '@features/branding';
+import { LanguageSwitcher, useTranslation } from '@features/i18n';
 import { cn } from '@shared/lib/cn';
 import { Button } from '@shared/ui';
 
@@ -35,6 +36,7 @@ const DEFAULT_BRAND_LABEL = 'Carlos ERP';
 export function Header({ className }: HeaderProps): React.JSX.Element {
   const { user, logout } = useAuth();
   const { branding } = useBranding();
+  const t = useTranslation();
   const router = useRouter();
 
   const logoUrl = branding?.logo ?? null;
@@ -97,53 +99,56 @@ export function Header({ className }: HeaderProps): React.JSX.Element {
         <span className="text-lg font-semibold text-brand-primary">{brandLabel}</span>
       )}
 
-      {user !== null ? (
-        <div ref={menuRef} className="relative">
-          <button
-            type="button"
-            onClick={() => {
-              setMenuOpen((open) => !open);
-            }}
-            aria-haspopup="menu"
-            aria-expanded={menuOpen}
-            className="flex items-center gap-sm rounded-md px-sm py-xs text-sm font-medium text-neutral-700 outline-none transition-colors hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-brand-primary/40"
-          >
-            <span
-              aria-hidden="true"
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary/10 text-sm font-semibold text-brand-primary"
+      <div className="flex items-center gap-md">
+        <LanguageSwitcher />
+        {user !== null ? (
+          <div ref={menuRef} className="relative">
+            <button
+              type="button"
+              onClick={() => {
+                setMenuOpen((open) => !open);
+              }}
+              aria-haspopup="menu"
+              aria-expanded={menuOpen}
+              className="flex items-center gap-sm rounded-md px-sm py-xs text-sm font-medium text-neutral-700 outline-none transition-colors hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-brand-primary/40"
             >
-              {initials(user.firstName, user.lastName, user.email)}
-            </span>
-            <span className="hidden sm:inline">{displayName}</span>
-          </button>
+              <span
+                aria-hidden="true"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary/10 text-sm font-semibold text-brand-primary"
+              >
+                {initials(user.firstName, user.lastName, user.email)}
+              </span>
+              <span className="hidden sm:inline">{displayName}</span>
+            </button>
 
-          {menuOpen ? (
-            <div
-              role="menu"
-              aria-label="Menú de usuario"
-              className="absolute right-0 z-40 mt-xs w-56 overflow-hidden rounded-md border border-neutral-200 bg-neutral-50 shadow-lg"
-            >
-              <div className="border-b border-neutral-200 px-md py-sm">
-                <p className="truncate text-sm font-semibold text-neutral-900">{displayName}</p>
-                <p className="truncate text-xs text-neutral-500">{user.email}</p>
+            {menuOpen ? (
+              <div
+                role="menu"
+                aria-label={t('header.userMenu')}
+                className="absolute right-0 z-40 mt-xs w-56 overflow-hidden rounded-md border border-neutral-200 bg-neutral-50 shadow-lg"
+              >
+                <div className="border-b border-neutral-200 px-md py-sm">
+                  <p className="truncate text-sm font-semibold text-neutral-900">{displayName}</p>
+                  <p className="truncate text-xs text-neutral-500">{user.email}</p>
+                </div>
+                <div className="p-sm">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    fullWidth
+                    role="menuitem"
+                    onClick={() => {
+                      void onLogout();
+                    }}
+                  >
+                    {t('header.logout')}
+                  </Button>
+                </div>
               </div>
-              <div className="p-sm">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  fullWidth
-                  role="menuitem"
-                  onClick={() => {
-                    void onLogout();
-                  }}
-                >
-                  Cerrar sesión
-                </Button>
-              </div>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
+            ) : null}
+          </div>
+        ) : null}
+      </div>
     </header>
   );
 }

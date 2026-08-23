@@ -1,5 +1,6 @@
 import { RequireAuth } from '@features/auth';
 import { BrandingProvider } from '@features/branding';
+import { BrandingLocaleSync } from '@features/i18n';
 import { AppShell } from '@shared/components';
 
 /**
@@ -29,6 +30,7 @@ export default function ProtectedLayout({
   return (
     <RequireAuth>
       <BrandingProvider>
+        <BrandingLocaleSync />
         <AppShell>{children}</AppShell>
       </BrandingProvider>
     </RequireAuth>

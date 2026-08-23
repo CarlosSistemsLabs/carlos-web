@@ -10,10 +10,14 @@
  * (task 45.3); the remaining sections are wired here ahead of their feature
  * tasks (46.x) so the shell is complete when they land.
  */
+import type { MessageKey } from '@features/i18n';
+
 export interface NavItem {
   /** Route the link navigates to (used for `href` and active matching). */
   href: string;
-  /** Visible label. */
+  /** i18n key for the visible label (translated at render time). */
+  labelKey: MessageKey;
+  /** Spanish fallback label (used if i18n is unavailable). */
   label: string;
   /**
    * Short emoji/text glyph used as a lightweight icon. Kept dependency-free;
@@ -24,13 +28,13 @@ export interface NavItem {
 
 /** Primary navigation sections, in display order. */
 export const NAV_ITEMS: readonly NavItem[] = [
-  { href: '/dashboard', label: 'Panel', icon: '▚' },
-  { href: '/products', label: 'Productos', icon: '▦' },
-  { href: '/sales', label: 'Ventas', icon: '＄' },
-  { href: '/customers', label: 'Clientes', icon: '☺' },
-  { href: '/stock', label: 'Inventario', icon: '▤' },
-  { href: '/reports', label: 'Informes', icon: '▧' },
-  { href: '/settings', label: 'Ajustes', icon: '⚙' },
+  { href: '/dashboard', labelKey: 'nav.dashboard', label: 'Panel', icon: '▚' },
+  { href: '/products', labelKey: 'nav.products', label: 'Productos', icon: '▦' },
+  { href: '/sales', labelKey: 'nav.sales', label: 'Ventas', icon: '＄' },
+  { href: '/customers', labelKey: 'nav.customers', label: 'Clientes', icon: '☺' },
+  { href: '/stock', labelKey: 'nav.stock', label: 'Inventario', icon: '▤' },
+  { href: '/reports', labelKey: 'nav.reports', label: 'Informes', icon: '▧' },
+  { href: '/settings', labelKey: 'nav.settings', label: 'Ajustes', icon: '⚙' },
 ] as const;
 
 /**

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { useTranslation } from '@features/i18n';
 import { cn } from '@shared/lib/cn';
 
 import { NAV_ITEMS, isActiveRoute } from './nav-items';
@@ -25,6 +26,7 @@ export interface SidebarProps {
 
 export function Sidebar({ className }: SidebarProps): React.JSX.Element {
   const pathname = usePathname();
+  const t = useTranslation();
 
   return (
     <nav
@@ -51,7 +53,7 @@ export function Sidebar({ className }: SidebarProps): React.JSX.Element {
             <span aria-hidden="true" className="w-5 text-center text-base">
               {item.icon}
             </span>
-            {item.label}
+            {t(item.labelKey)}
           </Link>
         );
       })}
