@@ -1,0 +1,4 @@
+# Feature-based modules (task 46.x): dashboard, products, sales, stock,
+# customers, purchases, cash, reports, settings. Each feature owns its own
+# components/, hooks/, services/, and types/ subfolders and is lazy-loaded at
+# the route level (Requirement 4.1, 4.3).

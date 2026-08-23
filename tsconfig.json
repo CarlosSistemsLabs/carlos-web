@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    /* Language and environment */
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "ES2023"],
+    "jsx": "preserve",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    /* Next.js / bundler interop */
+    "allowJs": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Strict type checking (mirrors carlos-backend) */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "useUnknownInCatchVariables": true,
+    "exactOptionalPropertyTypes": true,
+
+    /* Additional checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+
+    /* Completeness */
+    "skipLibCheck": true,
+
+    /* Next.js plugin */
+    "plugins": [{ "name": "next" }],
+
+    /* Path aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@app/*": ["app/*"],
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@config/*": ["config/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next", "out"]
+}
